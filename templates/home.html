@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <div class="back">
+        <div class="gioiThieu">
+            <ul>
+                <li><i class="fa-solid fa-newspaper"></i><a href="">Tin tức</a></li>
+                <li><i class="fa-regular fa-bell"></i><a href="">Thông báo</a></li>
+                <li><i class="fa-solid fa-phone"></i><a href="#">Thông tin liên hệ</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="logo">
+        <div class="tren">
+            <a class="logo_icon" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/404070767_2081413355562605_4030730505700161002_n.jpg') }}" alt=""></a>
+            <div class="search_icon">
+                <input type="text" name="search" class="search cw" placeholder="Tìm kiếm món ăn">
+                <button class="kinh" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="list">
+                <a class="out_list" href=""><i class="fa-solid fa-list-ul"></i></a>
+                <div class="out_list_1"><i class="fa-solid fa-caret-down"></i></div>
+                <div class="in_list">
+                    <form action="">
+                        <div class="col1">
+                            <p>Nguyên liệu</p>
+                            <ul style="display: flex;">
+                                <div>
+                                    <li>
+                                        <input type="checkbox" id="pig" value="pig">
+                                        <label for="pig">Thịt lợn</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="chicken" value="chicken">
+                                        <label for="chicken">Thịt gà</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="cow" value="cow">
+                                        <label for="cow">Thịt bò</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="shrimp" value="shrimp">
+                                        <label for="shrimp">Tôm</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="fish" value="fish">
+                                        <label for="fish">Cá</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="bread" value="bread">
+                                        <label for="bread">Bánh mì</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="egg" value="egg">
+                                        <label for="egg">Trứng</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="milk" value="milk">
+                                        <label for="milk">Sữa</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="vegetable" value="vegetable">
+                                        <label for="vegetable">Rau xanh</label>
+                                    </li>
+                                </div>
+                                <div style="margin-left: 20px;">
+                                    <li>
+                                        <input type="checkbox" id="rice" value="rice">
+                                        <label for="rice">Gạo</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="potato" value="potato">
+                                        <label for="potato">Khoai</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="flour" value="flour">
+                                        <label for="flour">Bột mì</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="seafood" value="seafood">
+                                        <label for="seafood">Hải sản</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="fruit" value="fruit">
+                                        <label for="fruit">Trái cây</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="tofu" value="tofu">
+                                        <label for="tofu">Đậu phụ</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="mushroom" value="Nấm">
+                                        <label for="mushroom">Nấm</label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="doc"></div>
+                        <div class="col2">
+                            <p>Hương vị</p>
+                            <ul style="display: flex;">
+                                <div>
+                                    <li>
+                                        <input type="checkbox" id="chua" value="chua">
+                                        <label for="chua">Chua</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="cay" value="cay">
+                                        <label for="cay">Cay</label>
+                                    </li>
+                                </div>
+                                <div style="margin-left: 37px;">
+                                    <li>
+                                        <input type="checkbox" id="man" value="man">
+                                        <label for="man">Mặn</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="ngot" value="ngot">
+                                        <label for="ngot">Ngọt</label>
+                                    </li>
+                                </div>
+                            </ul>
+                            <p>Phương pháp chế biến</p>
+                            <ul style="display: flex;">
+                                <div>
+                                    <li>
+                                        <input type="checkbox" id="luoc" value="luoc">
+                                        <label for="luoc">Luộc</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="hap" value="hap">
+                                        <label for="hap">Hấp</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="chien" value="chien">
+                                        <label for="chien">Chiên</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="xao" value="xao">
+                                        <label for="xao">Xào</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="nuong" value="nuong">
+                                        <label for="nuong">Nướng</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="kho" value="kho">
+                                        <label for="kho">Kho</label>
+                                    </li>
+                                </div>
+                                <div style="margin-left: 28px;">
+                                    <li>
+                                        <input type="checkbox" id="rang" value="rang">
+                                        <label for="rang">Rang</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="ham" value="ham">
+                                        <label for="ham">Hầm</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="tron" value="tron">
+                                        <label for="tron">Trộn</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="ngam" value="ngam">
+                                        <label for="ngam">Ngâm</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="apChao" value="apChao">
+                                        <label for="apChao">Áp chảo</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="muoi" value="muoi">
+                                        <label for="muoi">Muối</label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="doc"></div>
+                        <div class="col3">
+                            <p>Theo bữa trong ngày</p>
+                            <ul style="display: flex;">
+                                <div>
+                                    <li>
+                                        <input type="checkbox" id="mornig" value="mornig">
+                                        <label for="mornig">Sáng</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="noon" value="noon">
+                                        <label for="noon">Trưa</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="afternoon" value="afternoon">
+                                        <label for="afternoon">Chiều</label>
+                                    </li>
+                                </div>
+                                <div style="margin-left: 55px;">
+                                    <li>
+                                        <input type="checkbox" id="xeChieu" value="xeChieu">
+                                        <label for="xeChieu">Xế chiều</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="evening" value="evening">
+                                        <label for="evening">Tối</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="snack" value="snack">
+                                        <label for="snack">Ăn vặt</label>
+                                    </li>
+                                </div>
+                            </ul>
+                            <p>Theo chế độ ăn</p>
+                            <ul style="display: flex;">
+                                <div>
+                                    <li>
+                                        <input type="checkbox" id="chay" value="chay">
+                                        <label for="chay">Ăn chay</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="gym" value="gym">
+                                        <label for="gym">Tập gym</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="dam" value="dam">
+                                        <label for="dam">Ăn dặm</label>
+                                    </li>
+                                </div>
+                                <div style="margin-left: 37px;">
+                                    <li>
+                                        <input type="checkbox" id="kieng" value="kieng">
+                                        <label for="kieng">Ăn kiêng</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="healthy" value="healthy">
+                                        <label for="healthy">Healthy</label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="doc"></div>
+                        <div class="col4">
+                            <p>Nguyên liệu</p>
+                            <ul style="display: flex;">
+                                <div>
+                                    <li>
+                                        <input type="checkbox" id="chauA" value="chauA">
+                                        <label for="chauA">Châu Á</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="chauAu" value="chauAu">
+                                        <label for="chauAu">Châu Âu</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="y" value="y">
+                                        <label for="y">Ý</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="VN" value="VN">
+                                        <label for="VN">Việt Nam</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="TQ" value="TQ">
+                                        <label for="TQ">Trung Quốc</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="HQ" value="HQ">
+                                        <label for="HQ">Hàn Quốc</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="NB" value="NB">
+                                        <label for="NB">Nhật Bản</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="AD" value="AD">
+                                        <label for="AD">Ấn Độ</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="phap" value="phap">
+                                        <label for="phap">Pháp</label>
+                                    </li>
+                                </div>
+                                <div style="margin-left: 30px;">
+                                    <li>
+                                        <input type="checkbox" id="TBN" value="TBN">
+                                        <label for="TBN">Tây Ban Nha</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="TL" value="TL">
+                                        <label for="TL">Thái Lan</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="MX" value="MX">
+                                        <label for="MX">Mexico</label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                        <button type="submit"><i class="fa-solid fa-filter"></i></button>
+                    </form>
+                </div>
+            </div> 
+            <div class="login_icon">
+                <!-- Link to the login page -->
+                <a style="margin-right: 10px;" href="{{ url_for('dn') }}"><i class="fa-solid fa-circle-user"></i></a>
+                <a href="{{ url_for('dn') }}">Đăng nhập</a>
+                <p class="cw">|</p>
+                <!-- Link to the registration page -->
+                <a href="{{ url_for('dk') }}">Đăng ký</a>
+            </div>
+        </div>
+        <div class="duoi">
+            <ul>
+                <li><i class="fa-regular fa-eye"></i><a href="">Món ăn vừa xem</a></li>
+                <li><i class="fa-solid fa-fire-flame-curved"></i><a href="">Top tìm kiếm</a></li>
+                <li><i class="fa-solid fa-book"></i><a href="{{ url_for('sreach') }}">Tạo thực đơn</a></li>
+                <li><i class="fa-solid fa-apple-whole"></i><a href="">Thực phẩm</a></li>
+                <li style="margin: 0;"><i class="fa-solid fa-comments"></i><a href="">Đóng góp</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">   
+        <div class="special">
+            <div class="special_nd">
+                <p>Sản phẩm nổi bật</p>
+                <ul>
+                    <li><a href="">Giảm cân</a></li>
+                    <li>Tăng cân</li>
+                    <li>Gym</li>
+                </ul>
+            </div>
+            <div class="special_img">
+                <a href="#"><img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt=""></a>
+                <div class="chi_tiet">
+                    <div class="trai">
+                        <p style="color: #ededed; font-size: 24px;">Sườn xào chua ngọt</p>
+                    </div>
+                    <div class="phai">
+                        <p>Đánh giá</p>
+                        <ul>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                        </ul>
+                        <p style="margin-top: 26px;">Độ khó</p>
+                        <ul>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li><i class="fa-solid fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                            <li><i class="fa-regular fa-star"></i></li>
+                        </ul>
+                        <div class="d_phai">
+                            <a href=""><p style="color: black">Chi tiết<i style="color: black;" class="fa-solid fa-arrow-right"></i></p></a>
+                        </div>
+                    </div>
+                    <div class="duoi">
+                        <p style="margin-top: 13px; color: black;">Mô tả</p>
+                        <span>...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="special_news">
+                <div class="news1">
+                    <a href="">
+                        <img src="{{ url_for('static', filename='images/meoj.jpg') }}" alt="">
+                        <div class="on">
+                            <p>Những mẹo làm bếp có thể bạn nên biết</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="news1" style="margin-top: 6px;">
+                    <a href="">
+                        <img src="{{ url_for('static', filename='images/trer.jpg') }}" alt="">
+                        <div class="on">
+                            <p>Những món ăn bổ dưỡng cho trẻ</p>
+                        </div>
+                    </a>
+                </div>
+            </div> 
+        </div>
+        <h1 style="margin-top: 90px; margin-bottom: 16px;">Một vài thực đơn</h1>
+        <div class="take_menu">
+            <div class="menu">
+                <div class="menu1" style="float: left;">
+                    <a href=""><img src="{{ url_for('static', filename='images/thuc-pham-giup-be-tang-can.jpg') }}" alt=""></a>
+                    <div class="on">
+                        <p>Thực đơn tăng cân</p>
+                    </div>
+                </div>
+                <div class="menu2" style="float: right;">
+                    <a href=""><img src="{{ url_for('static', filename='images/rau-cu-qua.jpg') }}" alt=""></a>
+                    <div class="on">
+                        <p>Thực đơn giảm cân</p>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu2" style="float: left;">
+                    <a href=""><img src="{{ url_for('static', filename='images/gym-1.jpg') }}" alt=""></a>
+                    <div class="on">
+                        <p>Thực đơn tập Gym</p>
+                    </div>
+                </div>
+                <div class="menu1" style="float: right;">
+                    <a href=""><img src="{{ url_for('static', filename='images/benh.jpg') }}" alt=""></a>
+                    <div class="on">
+                        <p>Thực đơn cho người bệnh</p>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu1" style="float: left;">
+                    <a href=""><img src="{{ url_for('static', filename='images/trer2.jpg') }}" alt=""></a>
+                    <div class="on">
+                        <p>Thực đơn cho trẻ</p>
+                    </div>
+                </div>
+                <div class="menu2" style="float: right;">
+                    <a href=""><img src="{{ url_for('static', filename='images/nhe.jpg') }}" alt=""></a>
+                    <div class="on">
+                        <p>Thực đơn ăn nhẹ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ke"></div>
+        <div class="sanPham">
+            <div class="sanPham_1">
+                <p>Món ăn nổi bật</p>
+            </div>
+            <div class="sanPham_2">
+                <ul>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sanPham_2">
+                <ul>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                    <li style="position: relative;">
+                        <a href="">
+                            <div class="moTa">
+                                Mô tả
+                            </div>  
+                            <img src="{{ url_for('static', filename='images/suon-xao-chua-ngot.jpeg') }}" alt="">
+                            <p>Món ăn</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="xemthem_2">
+                <a href="">Xem thêm</a>
+            </div>
+            <div class="ke"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="anh">
+            <a href="#"><img class="anh_1" src="{{ url_for('static', filename='images/icon_3l.png') }}" alt=""></a>
+            <a href=""><img src="{{ url_for('static', filename='images/icon_3l.png')}}" alt=""></a>
+            <a href="#"><img class="anh_3" src="{{ url_for('static', filename='images/icon_3l.png') }}" alt=""></a>
+        </div>
+        <div style="margin-top: 10px;" class="ke"></div>
+        <div class="me">
+            <ul>
+                <p>Giới thiệu</p>
+                <li><a href="">Giới thiệu về web</a></li>
+                <li><a href="">Điều khoản dịch vụ</a></li>
+                <li><a href="">Chính sách bảo mật</a></li>
+            </ul>
+            <ul>
+                <p>Tài khoản</p>
+                <li><a href="./dn,dk/dn.html">Đăng nhập</a></li>
+                <li><a href="./dn,dk/dk.html">Đăng ký</a></li>
+            </ul>
+            <ul>
+                <p>Liên hệ</p>
+                <li>Hotline tự động: <a style="font-style: italic;" href="">0398126457</a></li>
+                <li><a href="">Liên hệ hỗ trợ</a></li>
+                <li><a href="">Chat với CSKH</a></li>
+            </ul>
+        </div>
+    </footer>
+    <a class="up" href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

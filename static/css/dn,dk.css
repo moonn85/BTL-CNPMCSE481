@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.signin{
+    position: relative;
+}
+.signin img{
+    object-fit: cover;
+    width: 100%;
+}
+.signin .before_signin{
+    position: absolute;
+    top: 9%;
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+.signin .signin_action{
+    width: 40%;
+    height: 817px;
+    background-color: rgb(76 170 135);
+    border-radius: 10px;
+    opacity: 0.8;
+}
+.signin .signin_action a{
+    text-decoration: none;
+    color: white;
+}
+.signin .signin_action .le{
+    margin-top: 44px; 
+    text-align: center;
+    font-size: 38px;
+}
+.signin .signin_action .le img{
+    width: 17%;
+    border-radius: 88px;
+}
+.signin .signin_action .le p{
+    color: black;
+    font-weight: bold;
+}
+.signin .signin_action .message{
+    margin: 19px 60px 20px;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+.signin .signin_action .run{
+    margin: 20px 10%;
+    height: 502px;
+    background-color: rgb(16 50 32);
+    border-radius: 5px
+}
+.signin .signin_action .run p{
+    color: white;
+}
+.signin .signin_action .run input{
+    margin-top: 3px;
+    margin-left: 48px;
+    width: 384px;
+    height: 44px;
+    background-color: white;
+    border: 0;
+    border-radius: 50px;
+    padding-left: 10px;
+}
+.signin .signin_action .run p{
+    margin-top: 20px;
+    margin-left: 57px;
+    font-size: 25px
+}
+.signin .signin_action .run .except{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 44px;
+    color: white;
+    font-weight: bold;
+    font-size: 21px;
+    background-color: blue;
+    border-radius: 10px;
+    margin: 35px 32% 0;
+}
+.signin .signin_action .run .except:hover{
+    transform: scale(1.1);
+    transition: 0.7s;
+}
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.login{
+    position: relative;
+}
+.login img{
+    width: 100%;
+    object-fit: cover;
+}
+.login .before_login{
+    position: absolute;
+    top: 9%;
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+.login .login_action{
+    width: 40%;
+    height: 748px;
+    background-color: rgb(76 170 135);
+    border-radius: 10px;
+    opacity: 0.9;
+}
+.login .login_action a{
+    text-decoration: none;
+    color: white;
+}
+.login .login_action .le{
+    margin-top: 44px; 
+    text-align: center;
+    font-size: 38px;
+    
+}
+.login .login_action .le p{
+    font-weight: bold;
+}
+.login .login_action .le img{
+    width: 17%;
+    border-radius: 88px;
+}
+.login .login_action .message{
+    margin: 28px 60px 20px;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+.login .login_action .run{
+    margin: 20px 10%;
+    height: 423px;
+    background-color: rgb(16 50 32);
+    border-radius: 5px
+}
+.login .login_action .run p{
+    color: white;
+}
+.login .login_action .run input{
+    margin-top: 3px;
+    margin-left: 48px;
+    width: 384px;
+    height: 44px;
+    background-color: white;
+    border: 0;
+    border-radius: 50px;
+    padding-left: 10px;
+}
+.login .login_action .run p{
+    margin-top: 20px;
+    margin-left: 57px;
+    font-size: 25px
+}
+.login .login_action .run .forget{
+    font-size: 13px;
+    margin-top: 7px;
+    float: right;
+    margin-right: 59px;
+}
+.login .login_action .run .forget a{
+    color: aqua;
+}
+.login .login_action .run .forget a:hover{
+    text-decoration: underline;
+}
+.login .login_action .run .except{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 44px;
+    color: white;
+    font-weight: bold;
+    font-size: 21px;
+    background-color: blue;
+    border-radius: 10px;
+    margin: 35px 32% 0;
+}
+.login .login_action .run .except:hover{
+    transform: scale(1.1);
+    transition: 0.7s;
+}
+.login .login_action .run .other{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 13px 5%;
+}
+.login .login_action .run .other .ngang{
+    background-color: rgb(0, 0, 0);
+    width: 28%;
+    height: 1px;
+    border-radius: 5px;
+}
+.login .login_action .run .other p{
+    margin: 0 10px;
+    font-size: 17px
+}
+
+.login .login_action .run .dk{
+    margin-top: 27px;
+}
+.login .login_action .run .dk p{
+    margin-left: 27px;
+    font-size: 17px;
+}
+.login .login_action .run .dk a{
+    color: aqua;
+    margin-left: 4px;
+}
+.login .login_action .run .dk a:hover{
+    font-size: 20px;
+    transition: 0.5s;
+}

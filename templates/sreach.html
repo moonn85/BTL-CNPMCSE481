@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tìm kiếm Công thức nấu ăn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            text-align: left;
+        }
+
+        label, input[type="text"], input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .recipe-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .recipe {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .recipe img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .recipe h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tìm kiếm Công thức nấu ăn theo Thành phần</h1>
+    <form action="/find_recipes" method="get">
+        <label for="ingredients">Thành phần:</label><br>
+        <input type="text" id="ingredients" name="ingredients"><br>
+        <input type="submit" value="Tìm kiếm">
+    </form>
+    {% if recipes %}
+        <h2>Kết quả tìm kiếm:</h2>
+        <div class="recipe-container">
+            {% for recipe in recipes %}
+                <div class="recipe">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                    <h3>{{ recipe.title }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="recipes">
+        {% for recipe in recipes %}
+            <div class="recipe">
+                <h2>{{ recipe['title'] }}</h2>
+                <img src="{{ recipe['image'] }}" alt="{{ recipe['title'] }}">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dn,dk.css') }}">
+</head>
+<body>
+    <div class="login">
+        <img style="height: 860px;" src="{{ url_for('static', filename='images/background_dn.jpg') }}" alt="Background Image">
+        <div class="before_login">
+            <div class="login_action">
+                <div class="le">
+                    <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/404070767_2081413355562605_4030730505700161002_n.jpg') }}" alt="Logo Image"></a>
+                    <p style="margin-top: 16px;">Đăng nhập</p>
+                </div>
+                <p class="message">Đăng nhập tìm kiếm những công thức món ăn bạn yêu thích</p>
+                <div class="run">
+                    <form action="{{ url_for('dn') }}" method="post">
+                        <p style="padding-top: 20px;">Tài khoản</p>
+                        <input type="text" name="account" class="account" placeholder="Nhập email hoặc số điện thoại">
+                        <p>Mật khẩu</p>
+                        <input type="password" name="password" id="password" class="password" placeholder="Nhập mật khẩu">
+                        <p class="forget"><a href="{{ url_for('forgot_password') }}">Quên mật khẩu?</a></p>
+                        <input class="except" type="submit" value="Đăng Nhập">
+                    </form>
+                    <div class="dk">
+                        <p>Bạn chưa có tài khoản? <a href="{{ url_for('dk') }}">Đăng ký</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

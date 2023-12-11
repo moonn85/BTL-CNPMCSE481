@@ -1,0 +1,619 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html{
+    scroll-behavior:smooth;
+}
+.cw{
+    color: white;
+}
+body a{
+    text-decoration: none;
+    color: white;
+}
+.back{
+    background-color: rgb(0, 0, 0);
+    height: 38px;
+}
+.back .gioiThieu{
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-right: 200px;
+    height: 40px;
+    font-weight: 300;
+    font-size: 14px;
+}
+.back .gioiThieu ul li{
+    display: inline-block;
+    color: rgb(198, 198, 198);
+    margin-right: 2px;
+}
+.back .gioiThieu ul li a{
+    color: rgb(198, 198, 198);
+    margin: 0 8px;
+}
+.back .gioiThieu ul li:hover{
+    text-decoration: underline solid white;
+}
+.logo{
+    height: 98px;
+    padding: 20px 0;
+    background-color: rgb(68 152 90);
+}
+.logo .tren{
+    display: flex;
+    align-items: center;
+    padding: 0 200px 0 150px;
+    height: 50px;
+}
+.logo .tren .logo_icon{
+    width: 200px;
+    margin-right: 40px;
+}
+.logo .tren .logo_icon img{
+    width: 33%;
+    padding: 50px;
+    border-radius: 88px;
+}
+.logo a{
+    color: white;
+}
+.logo .tren .search_icon{
+    display: flex;
+}
+.logo .tren .search_icon .search{
+    padding-left: 10px;
+    background-color: white;
+    height: 40px;
+    width: 404px;
+    border: 1px solid white;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.logo .tren .search_icon .kinh{
+    margin-top: 0px;
+    height: 44px;
+    width: 44px;
+    padding: 0;
+    border: 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.logo .tren .search_icon .kinh i{
+    color: rgb(96 211 126);
+    font-size: 18px;
+}
+.logo .tren .search_icon .kinh:hover i{
+    color: rgb(66, 214, 106);
+    transition: 0.7s;
+}
+.logo .tren .search_icon .kinh:hover{
+    background-color: rgb(223 223 223);
+    transition: 0.7s;
+}
+.logo .tren .list{
+    margin-right: 151px;
+    margin-left: 13px;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo .tren .list .out_list{
+    font-size: 23px;
+}
+.logo .tren .list .out_list a{
+    height: auto;
+}
+.logo .tren .list .out_list i{
+    color: white;
+}
+.logo .tren .list:hover .out_list_1{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.2s;
+}
+.logo .tren .list .out_list_1{
+    position: absolute;  
+    display: flex; 
+    justify-content: center;
+    top: 89px;
+    width: 50px;
+    font-size: 20px;
+    color: white;
+    visibility: hidden;
+    opacity: 0;
+}
+.logo .tren .list:hover .in_list{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+.logo .tren .list .in_list{
+    padding: 3px 33px;
+    margin-right: 199px;
+    position: absolute;
+    top: 108px;
+    width: 1002px;
+    height: 370px;
+    border-radius: 3px;
+    background-color: black;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 4;
+}
+.logo .tren .list .in_list p{
+    color: aqua;
+    margin: 18px 0 10px 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+}
+.logo .tren .list .in_list form{
+    display: flex;
+}
+.logo .tren .list .in_list ul{
+    padding-left: 14px;
+}
+.logo .tren .list .in_list ul li{
+    list-style-type: none;
+    margin-bottom: 13px;
+}
+.logo .tren .list .in_list button:hover{
+    background-color: white;
+    color: #72b559;
+    transform: scale(1.1);
+    transition: 0.7s;
+}
+.logo .tren .list .in_list button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #72b559;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 318px;
+    width: 30px;
+    height: 30px;
+}
+.logo .tren .list .in_list label{
+    font-size: 14px;
+    color: white;
+}
+.logo .tren .list .in_list .doc{
+    width: 1px;
+    background-color: rgb(160, 160, 160);
+    border-radius: 5px;
+    margin: 8px 20px 0 40px;
+}
+
+.logo .tren .login_icon{
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+.logo .tren .login_icon a{
+    font-size: 17px;
+    margin-right: 5px;
+}
+.logo .tren .login_icon p{
+    margin-right: 5px;
+}
+.logo .tren .login_icon a i{
+    font-size: 40px;
+}
+.logo .duoi{
+    padding: 0 200px 0 150px;
+    margin-top: 27px;
+}
+.logo .duoi ul{
+    padding: 0;
+}
+.logo .duoi ul li{
+    display: inline-block;
+    margin-right: 134px;
+}
+.logo .duoi ul li:hover{
+    text-decoration: underline solid white;
+}
+.logo .duoi a{
+    font-size: 17px;
+}
+.logo .duoi i{
+    color: white;
+    margin-right: 10px;
+}
+.content{
+    background-color: #ededed;
+    width: 100%;
+}
+.content img{
+    border: 3px solid black;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.content .icon2 img{
+    display: flex;
+    justify-content: center;
+    border: 0;
+    width: 300px;
+}
+.content h1{
+    margin-top: 61px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+}
+.content .special{
+    display: flex;
+    padding: 24px 200px 0 150px;
+}
+.content .special .special_nd{
+    padding: 10px 0 0 10px;
+    border-top: 2px solid #a2a2a2;
+    border-left: 2px solid #a2a2a2;
+    background-color: gainsboro;
+    width: 20%;
+    margin-right: 20px;
+    height: 309px;
+}
+.content .special .special_nd p{
+    font-weight: bold;
+    font-size: 20px;
+}   
+.content .special .special_nd a{
+    color: black;
+}
+.content .special .special_nd ul{
+    padding: 0;
+    margin-left: 20px;
+    list-style-type: none;
+}
+.content .special .special_nd ul li{
+    margin-top: 6px;
+    font-size: 17px;
+}
+.content .special .special_nd ul li a:hover{
+    margin-left: 10px;
+    transition: 0.7s;
+}
+.content .special .special_img{
+    width: 644px;
+    height: 319px;
+    position: relative;
+    display: flex;
+    background-color: #ededed;
+    border-radius: 10px;
+}
+.content .special .special_img img{
+    width: 640px;
+    height: 315px;
+}
+.content .special .special_img:hover img{
+    filter: brightness(70%);
+    transition: 0.7s;
+    width: 500px;
+    height: 247px;
+    border-radius: 0;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.content .special .special_img:hover .chi_tiet{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.7s;
+}
+.content .special .special_img .chi_tiet{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 3;
+    height: 315px;
+    width: 640px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+.content .special .special_img .chi_tiet p{
+    font-weight: 700;
+}
+.content .special .special_img .chi_tiet .trai{
+    float: left;
+    margin-top: 15px;
+    margin-left: 22px;
+}
+.content .special .special_img .chi_tiet .phai{
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+.content .special .special_img .chi_tiet .phai i{
+    color: #39a144;
+}
+.content .special .special_img .chi_tiet .phai p{
+    font-size: 21px;    
+    display: flex;
+    justify-content: center;
+}
+.content .special .special_img .chi_tiet .phai ul{
+    margin-top: 4px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+.content .special .special_img .chi_tiet .phai ul li{
+    color: white;
+    padding: 0 2px;
+}
+.content .special .special_img .chi_tiet .d_phai{
+    margin-top: 80px;
+    margin-left: -36px;
+}
+.content .special .special_img .chi_tiet .d_phai p{
+    font-size: 17px;
+}
+.content .special .special_img .chi_tiet .d_phai a:hover p{
+    font-size: 20px;
+    transition: 0.7s;
+}
+.content .special .special_img .chi_tiet .duoi{
+    margin-top: 255px;
+    margin-left: 22px;
+}
+.content .special .special_img .chi_tiet .duoi a p:hover{
+    font-size: 20px;
+    transition: 0.7s;
+}
+.content .special .special_img .chi_tiet .duoi p{
+    font-size: 21px;
+}
+.content .special .special_img .chi_tiet .duoi span{
+    margin-left: 15px;
+    color: black;
+}
+.content .special .special_news{
+    margin-left: 11px;
+}
+.content .special .special_news img{
+    width: 244px;
+    height: 150px;
+    object-fit: cover;
+}
+.content .special .special_news .news1:hover img{
+    filter: brightness(70%);
+    transition: 0.7s;
+}
+.content .special .special_news .news1{
+    position: relative;
+}
+.content .special .special_news .news1:hover .on{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.7s;
+}
+.content .special .special_news .news1 .on{
+    top: 30px;
+    left: 15px;
+    padding-right: 20px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 3;
+}
+.ke{
+    margin-top: 18px;
+    background-color: rgb(160, 160, 160);
+    width: 100%;
+    height: 1px;
+    border-radius: 5px;
+}
+.content .take_menu{
+    padding-top: 20px;
+    height: 1228px;
+}
+.content .take_menu .menu{
+    padding-top: 5px;
+}
+.content .take_menu .menu p{
+    color: white;
+    font-weight: bold;
+}
+.content .take_menu .menu img{
+    border: 0;
+    border-radius: 0;
+}
+.content .take_menu .menu1{
+    width: 68%;
+    position: relative;
+}
+.content .take_menu .menu1:hover img{
+    filter: brightness(70%);
+    transition: 0.7s;
+}
+.content .take_menu .menu .menu1 img{
+    width: 100%;
+    height: 405px;
+    object-fit: cover;
+}
+.content .take_menu .menu1:hover .on{
+    visibility: visible;
+    opacity: 1;
+    font-size: 32px;
+    transition: 0.7s;
+}
+.content .take_menu .menu1 .on{
+    position: absolute;
+    z-index: 3;
+    top: 53px;
+    left: 60px;
+    visibility: hidden;
+    opacity: 0;
+}
+.content .take_menu .menu1 .on p{
+    font-size: 32px;
+}
+.content .take_menu .menu2{
+    width: 31.5%;
+    position: relative;
+}
+.content .take_menu .menu2:hover img{
+    filter: brightness(70%);
+    transition: 0.7s;
+}
+.content .take_menu .menu .menu2 img{
+    width: 100%;
+    height: 405px;
+    object-fit: cover;
+}
+.content .take_menu .menu2:hover .on{
+    visibility: visible;
+    opacity: 1;
+    font-size: 32px;
+    transition: 0.7s;
+}
+.content .take_menu .menu2 .on{
+    position: absolute;
+    z-index: 3;
+    top: 53px;
+    left: 60px;
+    visibility: hidden;
+    opacity: 0;
+}
+.content .take_menu .menu2 .on p{
+    font-size: 32px;
+}
+.content .sanPham{
+    padding: 52px 200px 0 150px;
+}
+.content .sanPham .sanPham_1{
+    font-size: 28px;
+    font-weight: bold;
+}
+.content .sanPham .sanPham_2 img{
+    width: 279px;
+    height: 156px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.content .sanPham .sanPham_2 ul{
+    margin: 25px 0 0;
+    padding: 0;
+    display: flex;
+}
+.content .sanPham .sanPham_2 ul li{
+    list-style-type: none;
+    margin-right: 18px;
+}
+.content .sanPham .sanPham_2 ul li:hover .moTa{
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    transition: 0.7s;
+}
+.content .sanPham .sanPham_2 ul li .moTa{
+    position: absolute;
+    margin-top: 111px;
+    margin-left: 10px;
+    font-size: 17px;
+    color: #ededed;
+    visibility: hidden;
+    opacity: 0;
+}
+.content .sanPham .sanPham_2 ul li:hover img{
+    filter: brightness(70%);
+    transition: 0.7s;
+}
+.content .sanPham .sanPham_2 a p{
+    margin: 10px 0 0 7px;
+    font-weight: bold;
+    color: black;
+    width: auto;
+}
+.content .sanPham .sanPham_2 ul li:hover p{
+    text-decoration: underline;
+}
+.content .sanPham .xemthem{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+.content .sanPham .xemthem a{
+    color: white;
+    font-size: 25px;
+}
+.content .sanPham .xemthem_2{
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+}
+.content .sanPham .xemthem_2 a{
+    color: #5656ff;
+    font-size: 15px;
+}
+.content .sanPham .xemthem_2 a:hover{
+    text-decoration: underline;
+}
+
+
+
+
+footer{
+    background-color: rgb(58 112 60);
+    height: 258px;
+    padding: 0 200px 0 150px;
+    color: white;
+}
+footer .anh{
+    padding: 10px 0 0;
+}
+footer .anh img{
+    width: 30px;
+    height: 48px;
+    object-fit: cover;
+}
+footer .anh .anh_1{
+    object-position: -8px 0px;
+}
+footer .anh .anh_3{
+    object-position: -74px 0px;
+}
+footer .me{
+    display: flex;
+    margin-top: 25px;
+}
+.me p{
+    font-size: 16px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+.me ul{
+    padding: 0 139px 0 0;
+}
+.me ul li{
+    padding-top: 5px;
+    list-style-type: none;
+}
+.me a{
+    font-size: 14px;
+}
+.me a:hover{
+    text-decoration: underline;
+}
+.up{
+    position: fixed;
+    z-index: 5;
+    width: 45px;
+    height: 45px;
+    background-color: #424242;
+    text-align: center;
+    line-height: 45px;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 90px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dn,dk.css') }}">
+</head>
+<body>
+    <div class="signin">
+        <img style="height: 939px;" src="{{ url_for('static', filename='images/background_dk.jpg') }}" alt="Background">
+        <div class="before_signin">
+            <div class="signin_action">
+                <div class="le">
+                    <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/404070767_2081413355562605_4030730505700161002_n.jpg') }}" alt="Logo Image"></a>
+                    <p style="margin-top: 16px;">Đăng ký</p>
+                </div>
+                <p class="message">Đăng ký tài khoản để có trải nghiệm tốt hơn</p>
+                <div class="run">
+                    <form action="{{ url_for('register') }}" method="post">
+                        <p style="padding-top: 20px;">Email</p>
+                        <input type="email" id="email" name="email" class="input-field" placeholder="Nhập email" required>
+                        <p>Số điện thoại</p>
+                        <input type="tel" id="phone" name="phone" class="input-field" placeholder="Nhập số điện thoại" required>
+                        <p>Mật khẩu</p>
+                        <input type="password" id="password" name="password" class="input-field" placeholder="Nhập mật khẩu" required>
+                        <p>Nhập lại mật khẩu</p>
+                        <input type="password" id="confirm_password" name="confirm_password" class="input-field" placeholder="Nhập lại mật khẩu" required>
+                        <input type="submit" value="Đăng ký" class="submit-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
