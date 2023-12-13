@@ -1,68 +1,58 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Validate form data
+    // Xác thực dữ liệu của form
     function validateForm(form) {
         var email = form["email"].value;
         var password = form["password"].value;
         var confirmPassword = form["confirmPassword"] ? form["confirmPassword"].value : null;
 
         if (!email || !password || (confirmPassword && password !== confirmPassword)) {
-            alert("Please fill out all fields correctly.");
+            alert("Vui lòng điền đầy đủ thông tin vào các trường.");
             return false;
         }
         return true;
     }
 
-    // AJAX Request for Registration
+    // Yêu cầu AJAX cho việc đăng ký
     function registerUser() {
         var registerForm = document.getElementById('registerForm');
         if (registerForm && validateForm(registerForm)) {
+            var formData = new FormData(registerForm);
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/register', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         window.location.href = '/dn';
                     } else {
-                        alert('Registration failed');
+                        alert('Đăng ký thất bại');
                     }
                 }
             };
-            var data = JSON.stringify({
-                email: registerForm['email'].value,
-                phone: registerForm['phone'].value,
-                password: registerForm['password'].value,
-                confirm_password: registerForm['confirm_password'].value
-            });
-            xhr.send(data);
+            xhr.send(formData);
         }
     }
 
-    // AJAX Request for Login
+    // Yêu cầu AJAX cho việc đăng nhập
     function loginUser() {
         var loginForm = document.getElementById('loginForm');
         if (loginForm && validateForm(loginForm)) {
+            var formData = new FormData(loginForm);
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/dn', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         window.location.href = '/';
                     } else {
-                        alert('Login failed');
+                        alert('Đăng nhập thất bại');
                     }
                 }
             };
-            var data = JSON.stringify({
-                email: loginForm['email'].value,
-                password: loginForm['password'].value
-            });
-            xhr.send(data);
+            xhr.send(formData);
         }
     }
 
-    // Event listener for form submissions
+    // Bắt sự kiện khi form được gửi đi
     var registerFormElement = document.getElementById('registerForm');
     var loginFormElement = document.getElementById('loginForm');
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm Công thức nấu ăn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    padding: 20px;
+    text-align: center;
+    background-image: url(/static/images/background_dk.jpg); /* Thay đổi đường dẫn đến hình ảnh của bạn */
+    background-size: cover;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    text-align: left;
+    
+}
+
+label, input[type="text"], input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.recipe-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.recipe {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.recipe img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.recipe h3 {
+    margin: 0;
+}
+
+</style>
+<body>
+    <h1>Tìm kiếm món ăn theo Thành phần</h1>
+    <form action="/find_recipes" method="get">
+        <p style="font-size: 15px;"><a href="{{url_for('home')}}">Trang chủ</a></p>
+        <label for="ingredients">Thành phần, nguyên liệu: </label><br>
+        <input type="text" id="ingredients" name="ingredients"><br>
+        <input type="submit" value="Tìm kiếm">
+    </form>
+    {% if recipes %}
+        <h2>Kết quả tìm kiếm:</h2>
+        <div class="recipe-container">
+            {% for recipe in recipes %}
+                <div class="recipe">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                    <h3><a href="{{ recipe.sourceUrl }}" target="_blank">{{ recipe.title }}</a></h3>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+</body>
+</html>

@@ -19,10 +19,10 @@
                 <div class="run">
                     <form action="{{ url_for('dn') }}" method="post">
                         <p style="padding-top: 20px;">Tài khoản</p>
-                        <input type="text" name="account" class="account" placeholder="Nhập email hoặc số điện thoại">
+                        <input type="text" name="email" class="email" placeholder="Nhập email hoặc số điện thoại">
                         <p>Mật khẩu</p>
                         <input type="password" name="password" id="password" class="password" placeholder="Nhập mật khẩu">
-                        <p class="forget"><a href="{{ url_for('forgot_password') }}">Quên mật khẩu?</a></p>
+                        <p class="forget"><a href="">Quên mật khẩu?</a></p>
                         <input class="except" type="submit" value="Đăng Nhập">
                     </form>
                     <div class="dk">

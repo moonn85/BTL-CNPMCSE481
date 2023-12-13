@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ người dùng</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+header img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="text"], form input[type="email"], form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background: #555;
+}
+
+</style>
+<body>
+    <header>
+        <img src="{{ user.avatar(150) }}" alt="Ảnh đại diện người dùng">
+        <h1>{{ user.username }}</h1>
+    </header>
+    <section id="about">
+        <p>Giới thiệu: {{ user.about_me }}</p>
+        <p>Lần cuối online: {{ user.last_seen.strftime('%Y-%m-%d %H:%M') }}</p>
+    </section>
+    <section id="details">
+        <h2>Thông tin liên hệ</h2>
+        <p>Email: {{ user.email }}</p>
+        <p>Điện thoại: {{ user.phone }}</p>
+    </section>
+    <section id="activity">
+        <h2>Bài viết gần đây</h2>
+        <!-- Lặp qua các bài viết của người dùng nếu có -->
+        {% for post in user.posts %}
+        <p>{{ post.body }} - {{ post.timestamp.strftime('%Y-%m-%d %H:%M') }}</p>
+        {% endfor %}
+    </section>
+    <section id="contact">
+        <h2>Liên hệ với tôi</h2>
+        <form>
+            <!-- Các phần tử của biểu mẫu tôi chưa thêm vào, bạn có thể thêm vào tùy ý -->
+        </form>
+    </section>
+</body>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</html>

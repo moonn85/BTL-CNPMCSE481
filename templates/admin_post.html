@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/92a187b64c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css.css') }}">
+    <title>Quản lý</title>
+</head>
+<body>
+    <script src="https://cdn.tiny.cloud/1/hwevxz0kw1k6g2d9mz3ceum6ri1tnodijyqyx91q0o4g8dx5/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{ url_for('static', filename='js/js.js') }}"></script>
+    <div class="back">
+        <p style="text-transform: uppercase;">administration</p>
+        <div style="height: 100%;" class="doc"></div>
+    </div>
+    <div class="nd">
+        <div class="left">
+            <div class="muc">  
+                <a href=""><i class="fa-solid fa-house"></i>Trang chủ admin</a>
+            </div>
+            <div class="ngang"></div>
+            <div class="muc" onclick="clickAn(this)">
+                <a href="#">Quản trị danh mục <i class="fa-solid fa-caret-down"></i></a>
+            </div>
+            <div class="an">
+                <div class="ngang"></div>
+                <ul>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Loại danh mục</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Sản phẩm</a></li>
+                    <li onclick="clickAn13()"><i class="fa-solid fa-caret-right"></i> <a href="#">Bài viết</a></li>
+                    <li onclick="clickAn14()"><i class="fa-solid fa-caret-right"></i> <a href="#">Quản lý bình luận</a></li>
+                </ul>
+            </div>
+            <div class="ngang"></div>
+            <div class="muc" onclick="clickAn(this)">
+                <a href="#">Quản trị giao diện <i class="fa-solid fa-caret-down"></i></a>
+            </div>
+            <div class="an">
+                <div class="ngang"></div>
+                <ul>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Hình ảnh</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Hỗ trợ trực tuyến</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Thông tin</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Nội dung khác</a></li>
+                </ul>
+            </div>
+            <div class="ngang"></div>
+            <div class="muc" onclick="clickAn(this)">
+                <a href="#">Quản trị thông tin <i class="fa-solid fa-caret-down"></i></a>
+            </div>
+            <div class="an">
+                <div class="ngang"></div>
+                <ul>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Bảo mật tài khoản</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Khách hàng liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="ngang"></div>
+            <div class="muc" onclick="clickAn(this)">
+                <a href="#">SEO Website <i class="fa-solid fa-caret-down"></i></a>
+            </div>
+            <div class="an">
+                <div class="ngang"></div>
+                <ul>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Quản trị dữ liệu</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Quản trị dữ liệu</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Quản trị dữ liệu</a></li>
+                </ul>
+            </div>
+            <div class="ngang"></div>
+            <div class="muc" onclick="clickAn(this)">
+                <a href="#">Cấu hình user <i class="fa-solid fa-caret-down"></i></a>
+            </div>
+            <div class="an">
+                <div class="ngang"></div>
+                <ul>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Quản lý User</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Danh sách quyền</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Thông tin User</a></li>
+                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Thoát</a></li>
+                </ul>
+            </div>
+            <div class="ngang"></div>
+        </div>
+        <div class="doc"></div>
+        <div class="right">
+            <div class="head">
+                <p>Trang chủ website</p>
+            </div>
+            <div class="ngang"></div>
+            <div class="body">
+                <div class="an13">
+                    <form action="{{ url_for('post_monan') }}" method="post" enctype="multipart/form-data">
+                        <div class="tieude">
+                            <p>Món ăn</p>
+                            <input type="text" name="tenMonAn" placeholder="Nhập tên món ăn">
+                        </div>
+                        <div class="anh">
+                            <p>Hình ảnh</p>
+                            <input type="file" name="hinhAnh">
+                        </div>
+                        <div class="mota">
+                            <textarea name="moTa" wrap="off" placeholder="Nhập mô tả món ăn"></textarea>
+                        </div>
+                        <div class="thongtin">
+                            <p>Thông tin nội dung</p>
+                            <textarea id="myTextarea" name="noiDung"></textarea>
+                        </div>
+                        <div style="margin-top: 45px;" class="ngang"></div>
+                        <div class="tacvu">
+                            <p>Tác vụ</p>
+                            <ul>
+                                <li style="margin: 0;">
+                                    <input type="checkbox" id="moi" name="moi">
+                                    <label for="moi">Mới</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="noibat" name="noibat">
+                                    <label for="noibat">Nổi bật</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="hienthi" name="hienthi">
+                                    <label for="hienthi">Hiển thị</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="luu">
+                            <button type="submit">Lưu</button>
+                            <button type="reset">Reset</button>
+                            <button type="button">Thoát</button>  
+                        </div>
+                    </form>
+                </div>
+                <div class="an14">
+                    <div class="h">
+                        <div class="l">
+                            <a href="">Tất cả</a> | <a href="">Đang chờ</a> | <a href="">Được phê duyệt</a> | <a href="">Spam</a> | <a href="">Thùng rác</a>
+                            <form action="">
+                                <select name="" id="">
+                                    <option value="">Toàn bộ kiểu bình luận</option>
+                                    <option value="">Bình luận vi phạm</option>
+                                </select>
+                                <button type="submit">Lọc</button>
+                            </form>
+                        </div>
+                        <div class="r">
+                            <a style="font-size: 20px;" href="#" onclick="clickAn14_s()"><i class="fa-solid fa-gear"></i></a>
+                            <form style="padding-top: 0;" action="">
+                                <input type="text" placeholder="Tìm kiếm phản hồi">
+                                <button type="submit">Tìm kiếm</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="b">
+                        <form action="">
+                            <div class="dau">
+                                <input type="checkbox" onclick="toggleCheckboxes(this)" style="margin: 0 10px;">
+                                <p style="width: 18%;">Tác giả</p>
+                                <p style="width: 34%;">Bình luận</p>
+                                <p style="width: 25%;">Trả lời cho bài</p>
+                                <p style="width: 20%;">Thời gian đăng</p>
+                            </div>
+                            <div class="ngang"></div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="an14_s">
+                    <h2>Cài đặt bình luận</h2>
+                    <form action="">
+                        <div class="set">
+                            <h3>Tùy chọn mặc định cho bài viết/trang</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="gui">
+                                    <label for="gui">Gửi thông báo tới bất kỳ trang nhật ký trực tuyến nào được bài viết này liên kết tới</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="cho">
+                                    <label for="cho">Cho phép liên kết các thông báo từ các blog khác (pingbacks và trackbacks) trên các bài viết mới</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="chophep">
+                                    <label for="chophep">Cho phép mọi người gửi phản hồi cho bài viết mới</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="set">
+                            <h3>Các tùy chọn khác về phần hồi</h3>
+                            <ul style="padding-left: 86px;">
+                                <li>
+                                    <input type="checkbox" id="tac">
+                                    <label for="gui">Tác giả bình luận phải điền tên và email</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="tu">
+                                    <label for="tu">Tự động tắt chức năng gửi phản hồi nếu bài viết cũ hơn <input style="width: 32px;" type="number"> ngày</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="chia">
+                                    <label for="chia">Chia phản hồi thành nhiều trang với <input style="width: 32px;" type="number">Phản hồi cấp cao nhất trong mỗi trang và trang 
+                                        <select name="" id="">
+                                            <option value="">Cuối cùng</option>
+                                            <option value="">Đầu tiên</option>
+                                            <option value="">Giữa</option>
+                                        </select>
+                                    được dùng làm trang đầu tiên</label>
+                                </li>
+                                <p>Phản hồi được hiển thị với những phản hồi 
+                                    <select name="" id="">
+                                        <option value="">Cũ hơn</option>
+                                        <option value="">Mới hơn</option>
+                                    </select>
+                                ở đầu mỗi trang</p>
+                            </ul>
+                        </div>
+                        <div class="set">
+                            <h3>Gửi email cho tôi khi</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="co">
+                                    <label for="co">Có ai đó gửi phản hồi</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="phan">
+                                    <label for="phan">Có phản hồi chờ xét duyệt</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="set">
+                            <h3>Trước khi phản hồi được đăng</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="nhan">
+                                    <label for="nhan">Nhận xét phải chờ được kiểm duyệt</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="nguoi">
+                                    <label for="nguoi">Người gửi phản hồi đã từng có phản hồi được chấp nhận</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="luu">
+                            <button type="submit">Lưu</button>
+                            <button onclick="clickAn14()">Huỷ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

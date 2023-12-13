@@ -1,0 +1,248 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    margin: 0; 
+}
+.back{
+    width: 100%;
+    height: 52px;
+    background-color: black;
+    border-top: 3px solid #cacaca;
+    display: flex;
+    align-items: center;
+}
+.back>p{
+    width: auto;
+    justify-items: center;
+    padding: 0 39px;
+}
+.back p{
+    color: white;
+}
+.doc{
+    width: 1px;
+    background-color: rgb(160, 160, 160);
+}
+.ngang{
+    height: 1px;
+    width: 100%;
+    background-color: rgb(160, 160, 160);
+}
+.nd{
+    display: flex;
+    height: 100%;
+}
+.nd a{
+    text-decoration: none;
+    color: black;
+}
+.nd .left{
+    width: 14%;
+    height: 150vh;
+    background-color: #f2f2f2;
+}
+.nd .left .muc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 44px;
+}
+.nd .left .an{
+    display: none;
+    padding-left: 35px;
+    height: auto;
+}
+.nd .left .an ul{
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+}
+.nd .left .an ul li{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+i{
+    margin-right: 10px;
+}
+.nd .doc{
+    background-color: black;
+}
+.nd .right{
+    width: 86%;
+}
+.nd .right .head{
+    height: 44px;
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    padding-left: 10px
+}
+.nd .right .body{
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    margin: 17px 0 0 27px;
+    padding: 10px 10px 29px 26px ;
+    background-color: rgb(242, 242, 242);
+    height: auto;
+}
+.an13{
+    display: none;
+}
+.an13 p{
+    color: #0078ff;
+    font-weight: bold
+}
+.an13 .tieude{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.an13 .tieude input{
+    margin-left: 20%;
+    height: 29px;
+    width: 45%;
+}
+.an13 .anh{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.an13 .anh input{
+    margin-left: 19%;
+    height: 29px;
+    width: 45%;
+}
+.an13 .mota{
+    margin-top: 20px;
+    display: flex;
+}
+.an13 .mota textarea{
+    margin-left: 21%;
+    height: 112px;
+    width: 45%;
+}
+.an13 .thongtin{
+    margin-top: 20px;
+    display: flex;
+}
+.an13 .thongtin p{
+    margin-right: 13%;
+}
+.an13 .tacvu{
+    margin-top: 20px;
+    display: flex;
+}
+.an13 .tacvu ul{
+    display: flex;
+    align-items: center;
+    margin-left: 17%;
+}
+.an13 .tacvu ul li{
+    list-style-type: none;
+    
+    margin-left: 25px;
+}
+.an13 .tacvu ul li input{
+    transform: scale(1.4);
+}
+.an13 .luu{
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    margin-left: 23%;
+}
+.an13 .luu button{
+    border: 1px ;
+    border-radius: 4px;
+    background-color: #0078ff;
+    font-size: 15px;
+    color: white;
+    margin: 0 13px;
+    width: 57px;
+    height: 30px;
+}
+.an14{
+    display: none;
+}
+.an14 .h{
+    padding: 10px 0;
+    width: 100%;
+    display: inline-block;
+}
+.an14 .h .l{
+    float: left;
+}
+.an14 .h a{
+    display: inline-block;
+    font-size: 13px;
+}
+.an14 .h form{
+    padding-top: 15px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+.an14 .h form select{
+    height: 19px;
+}
+.an14 .h form button{
+    margin-left: 7px;
+    height: 19px;
+}
+.an14 .h .r{
+    float: right;
+    margin-right: 25px;
+    display: flex;
+    align-items: center;
+}
+.an14 .b{
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-top: 9px;
+    height: 107vh;
+}
+.an14 .b .dau{
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+.an14_s{
+    display: none;
+}
+.an14_s .set{
+    display: flex;
+    margin-top: 29px;
+}
+.an14_s .set h3{
+    margin: 0;
+    width: 300px;
+}
+.an14_s .set ul{
+    margin: 0;
+    list-style-type: none;
+}
+.an14_s .set ul li{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  /* CSS cho mục trong danh sách */
+  li {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  /* CSS cho mục đã chọn */
+  li:active {
+    background-color: #007bff; /* Màu nền khi mục được chọn */
+    color: #fff; /* Màu văn bản khi mục được chọn */
+  }
