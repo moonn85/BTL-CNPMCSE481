@@ -8,9 +8,11 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+# Cấu hình cơ sở dữ liệu (SQLAlchemy)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'mysql+pymysql://thanhphong:852004@localhost/khachhang')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('SECRET_KEY', 'default_secret_key')
+
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -76,18 +78,27 @@ def dk():
     return render_template('dk.html')
 
 # Route đăng nhập
+# Route đăng nhập
 @app.route('/dn', methods=['GET', 'POST'])
 def dn():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
         user = User.query.filter_by(email=email).first()
-        if user and bcrypt.check_password_hash(user.password, password):
-            login_user(user, remember=True)  # Bật chức năng 'remember me'
+
+        if not user:
+            flash('Không tìm thấy người dùng với email đã cung cấp')
+        elif bcrypt.check_password_hash(user.password, password):
+            login_user(user, remember=True)
             flash('Đăng nhập thành công!')
-            return redirect(url_for('admin_post') if user.is_admin else url_for('home'))
+
+            if getattr(user, 'is_admin', False):
+                return redirect(url_for('admin_post'))
+            else:
+                return redirect(url_for('home'))
         else:
-            flash('Email hoặc mật khẩu không hợp lệ')
+            flash('Mật khẩu không hợp lệ')
+
     return render_template('dn.html')
 
 # Route đăng xuất
@@ -131,20 +142,30 @@ def register():
         phone = request.form.get('phone')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
+        
         if password != confirm_password:
             flash('Mật khẩu không khớp!')
             return redirect(url_for('register'))
+        
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             flash('Email đã tồn tại.')
             return redirect(url_for('register'))
+        
+        existing_phone = User.query.filter_by(phone=phone).first()
+        if existing_phone:
+            flash('Số điện thoại đã tồn tại.')
+            return redirect(url_for('register'))
+        
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         new_user = User(email=email, phone=phone, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         flash('Đăng ký thành công! Vui lòng đăng nhập.')
         return redirect(url_for('dn'))
-    return render_template('register.html')
+    
+    return render_template('dn.html')
+
 
 # Route tìm kiếm
 @app.route('/search')
@@ -177,11 +198,14 @@ def allowed_file(filename):
 @app.route('/admin/post/monan', methods=['GET', 'POST'])
 @login_required
 def post_monan():
+    # Kiểm tra xem người dùng hiện tại có phải là quản trị viên hay không
     if not current_user.is_admin:
         flash('Chỉ quản trị viên mới có quyền truy cập trang này.')
         return redirect(url_for('home'))
 
+    # Xử lý yêu cầu POST để thêm món ăn mới
     if request.method == 'POST':
+        # Lấy dữ liệu từ form
         ten_mon_an = request.form.get('tenMonAn')
         mo_ta = request.form.get('moTa')
         noi_dung = request.form.get('noiDung')
@@ -191,6 +215,7 @@ def post_monan():
         hinh_anh_file = request.files.get('hinhAnh')
         hinh_anh_data = None
 
+        # Lưu file hình ảnh được tải lên
         if hinh_anh_file and allowed_file(hinh_anh_file.filename):
             filename = secure_filename(hinh_anh_file.filename)
             hinh_anh_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -198,6 +223,7 @@ def post_monan():
             with open(hinh_anh_path, 'rb') as file:
                 hinh_anh_data = file.read()
 
+        # Tạo đối tượng món ăn mới
         mon_an = MonAn(
             ten=ten_mon_an, 
             mo_ta=mo_ta, 
@@ -207,6 +233,7 @@ def post_monan():
             hienthi=hienthi, 
             hinh_anh=hinh_anh_data
         )
+        # Thêm món ăn vào cơ sở dữ liệu
         db.session.add(mon_an)
         db.session.commit()
 

@@ -11,6 +11,29 @@ function clickAn13() {
     anElement.style.display = (anElement.style.display === 'none' ? 'block' : 'none');
   }
 }
+function clickAn14() {
+  var anElement14 = document.querySelector('.an14');
+  if (anElement14.style.display === 'none') {
+    anElement14.style.display = 'block';
+  } else {
+    anElement14.style.display = 'none';
+  }
+}
+
+function clickAn14_s() {
+  var anElement14 = document.querySelector('.an14');
+  if (anElement14.style.display === 'none') {
+    anElement14.style.display = 'block';
+  } else {
+    anElement14.style.display = 'none';
+  }
+  var anElement14_s = document.querySelector('.an14_s');
+  if (anElement14_s.style.display === 'none') {
+    anElement14_s.style.display = 'block';
+  } else {
+    anElement14_s.style.display = 'none';
+  }  
+}
 
 tinymce.init({
   selector: '#myTextarea',
