@@ -39,13 +39,26 @@
 
                         <p>Nhập lại mật khẩu</p>
                         <input type="password" id="confirm_password" name="confirm_password" class="input-field" placeholder="Nhập lại mật khẩu" required autocomplete="new-password">
-                        
-                        <input type="submit" value="Đăng ký" class="submit-button" style="margin-top: 20px; background-color: aqua; width: 73%;">
+                        <p>Tên người dùng</p>
+                        <input type="text" id="username" name="username" class="input-field" placeholder="Tên người dùng sẽ được tự động tạo từ email" readonly>
+                        <input type="submit" value="Đăng ký" class="submit-button" style="margin-top: 20px; background-color: blue; ">
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function() {
+            var emailInput = document.getElementById('email');
+            var usernameInput = document.getElementById('username'); // Giả sử bạn có một trường nhập tên người dùng
+        
+            emailInput.onblur = function() {
+                var email = emailInput.value;
+                var username = email.substring(0, email.indexOf('@')); // Tạo tên người dùng từ phần trước @ trong email
+                usernameInput.value = username;
+            };
+        };
+        </script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

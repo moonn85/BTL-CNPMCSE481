@@ -70,3 +70,46 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+$(document).ready(function() {
+    var socket = io.connect('http://127.0.0.1:5000');
+    var $messages = $('#messages');
+    var $inputMessage = $('#myMessage');
+
+    $('#chat-icon').click(function(event) {
+        event.preventDefault();
+        $('#chatbox').toggle(); // Chuyển đổi trạng thái hiển thị của chat box
+    });
+    
+    socket.on('receive_message', function(msg) {
+        var messageType = msg.sender_id === "{{ sender_id }}" ? 'admin' : 'user'; // Xác định loại tin nhắn dựa trên sender_id
+        var messageElement = $('<li class="message ' + messageType + '"><div class="message-content">' + msg.text + '</div></li>');
+        $messages.append(messageElement);
+        scrollToBottom();
+    });
+
+    // Giả sử bạn đã lưu trữ ID người dùng hiện tại trong localStorage
+    var sender_id = localStorage.getItem('user_id');
+
+    $('#messageForm').submit(function(e) {
+        e.preventDefault();
+        var messageText = $inputMessage.val().trim();
+        if (messageText) {
+            socket.emit('send_message', {
+                sender_id: sender_id, // Sử dụng ID người dùng hiện tại
+                receiver_id: 1, // Gửi trả lời đến ID người gửi
+                text: messageText
+            });
+            // Thêm tin nhắn đã gửi vào giao diện người dùng
+            var messageElement = $('<li class="message user"><div class="message-content">' + messageText + '</div></li>');
+            $messages.append(messageElement);
+            scrollToBottom();
+
+            $inputMessage.val('');
+        }
+    });
+
+    function scrollToBottom() {
+        $messages.scrollTop($messages[0].scrollHeight);
+    }
+});

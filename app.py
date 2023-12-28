@@ -1,18 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask_cors import CORS
 from flask_login import UserMixin, current_user, login_required, LoginManager, login_user, logout_user
+from flask_socketio import SocketIO, emit
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 import requests
 from datetime import datetime
 import os
 from werkzeug.utils import secure_filename
+import logging
 
 app = Flask(__name__)
 # Cấu hình cơ sở dữ liệu (SQLAlchemy)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'mysql+pymysql://thanhphong:852004@localhost/khachhang')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'mysql+pymysql://thanhphong:852004@localhost/quantri')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('SECRET_KEY', 'default_secret_key')
-
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
+app.logger.setLevel(logging.INFO)  
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -32,35 +37,23 @@ class User(db.Model, UserMixin):
     avatar_url = db.Column(db.String(255))
     is_admin = db.Column(db.Boolean, default=False)
 
-class MonAn(db.Model):
-    __tablename__ = 'monan'
-    id = db.Column(db.Integer, primary_key=True)
-    ten = db.Column(db.String(100), nullable=False)
-    mo_ta = db.Column(db.Text, nullable=False)
-    noi_dung = db.Column(db.Text)
-    moi = db.Column(db.Boolean, default=False)
-    noibat = db.Column(db.Boolean, default=False)
-    hienthi = db.Column(db.Boolean, default=False)
-    hinh_anh = db.Column(db.LargeBinary)
+class Message(db.Model):
+    __tablename__ = 'messages'
+    id = db.Column(db.Integer, primary_key=True, default=None)
+    sender_id = db.Column(db.Integer, db.ForeignKey('khachhang.id'), nullable=False)
+    receiver_id = db.Column(db.Integer, db.ForeignKey('khachhang.id'), nullable=True)
+    text = db.Column(db.String(500), nullable=False)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
-class NguoiDung(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    ten = db.Column(db.String(100))
-    email = db.Column(db.String(255), unique=True)
+    sender = db.relationship('User', foreign_keys=[sender_id])
+    receiver = db.relationship('User', foreign_keys=[receiver_id])
 
-class BaiViet(db.Model):
+class Review(db.Model):
+    __tablename__ = 'DANHGIA'
     id = db.Column(db.Integer, primary_key=True)
-    tieu_de = db.Column(db.String(255))
-    noi_dung = db.Column(db.Text)
-
-class BinhLuan(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    noi_dung = db.Column(db.Text, nullable=False)
-    trang_thai = db.Column(db.Enum('dang_cho', 'duoc_phe_duyet', 'spam', 'thung_rac'), default='dang_cho')
-    ngay_dang = db.Column(db.TIMESTAMP, default=db.func.current_timestamp())
-    nguoi_dung_id = db.Column(db.Integer, db.ForeignKey('nguoi_dung.id'))
-    bai_viet_id = db.Column(db.Integer, db.ForeignKey('bai_viet.id'))
-
+    user_id = db.Column(db.String(80))
+    rating = db.Column(db.Integer)
+    comment = db.Column(db.String(500))
 
 # Hàm load_user để xác thực người dùng
 @login_manager.user_loader
@@ -78,7 +71,6 @@ def dk():
     return render_template('dk.html')
 
 # Route đăng nhập
-# Route đăng nhập
 @app.route('/dn', methods=['GET', 'POST'])
 def dn():
     if request.method == 'POST':
@@ -92,10 +84,18 @@ def dn():
             login_user(user, remember=True)
             flash('Đăng nhập thành công!')
 
+            # Lấy các tin nhắn của người dùng
+            messages = Message.query.filter(
+                (Message.sender_id == user.id) | (Message.receiver_id == user.id)
+            ).order_by(Message.timestamp.asc()).all()
+
+            # Chuyển đổi các tin nhắn thành định dạng JSON
+            messages_json = [{'text': message.text, 'sender_id': message.sender_id, 'timestamp': message.timestamp} for message in messages]
+
             if getattr(user, 'is_admin', False):
                 return redirect(url_for('admin_post'))
             else:
-                return redirect(url_for('home'))
+                return render_template('home.html', messages=messages_json)  # Trả về các tin nhắn cho trang chủ
         else:
             flash('Mật khẩu không hợp lệ')
 
@@ -105,6 +105,7 @@ def dn():
 @app.route('/logout')
 def logout():
     logout_user()
+    flash("Đăng xuất thành công", "success")
     return redirect(url_for('home'))
 
 # Route quản trị bài viết
@@ -125,6 +126,7 @@ def profile(username):
         user = current_user
     else:
         user = User.query.filter_by(username=username).first_or_404()
+    receiver_id = 1 
     return render_template('profile.html', user=user)
 
 # Hàm được gọi trước mỗi request
@@ -139,6 +141,7 @@ def before_request():
 def register():
     if request.method == 'POST':
         email = request.form.get('email')
+        username = request.form.get('username')  # Lấy tên người dùng từ form đăng ký
         phone = request.form.get('phone')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
@@ -158,7 +161,7 @@ def register():
             return redirect(url_for('register'))
         
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        new_user = User(email=email, phone=phone, password=hashed_password)
+        new_user = User(email=email,username=username, phone=phone, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         flash('Đăng ký thành công! Vui lòng đăng nhập.')
@@ -185,62 +188,117 @@ def find_recipes():
     else:
         return jsonify({'error': 'Yêu cầu API thất bại'}), response.status_code
 
-# Cấu hình thư mục để lưu file tải lên
-app.config['UPLOAD_FOLDER'] = 'uploads'
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+@app.route('/sp')
+def sp():
+    return render_template('sp.html')
 
-# Hàm kiểm tra loại file được phép
-def allowed_file(filename):
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+@app.route('/danhGia')
+def danhGia():
+    return render_template('danhGia.html')
 
-# Route để thêm món ăn mới
-@app.route('/admin/post/monan', methods=['GET', 'POST'])
-@login_required
-def post_monan():
-    # Kiểm tra xem người dùng hiện tại có phải là quản trị viên hay không
-    if not current_user.is_admin:
-        flash('Chỉ quản trị viên mới có quyền truy cập trang này.')
-        return redirect(url_for('home'))
+@app.route('/gioithieu')
+def gioithieu():
+    return render_template('gioithieu.html')
 
-    # Xử lý yêu cầu POST để thêm món ăn mới
-    if request.method == 'POST':
-        # Lấy dữ liệu từ form
-        ten_mon_an = request.form.get('tenMonAn')
-        mo_ta = request.form.get('moTa')
-        noi_dung = request.form.get('noiDung')
-        moi = 'moi' in request.form
-        noibat = 'noibat' in request.form
-        hienthi = 'hienthi' in request.form
-        hinh_anh_file = request.files.get('hinhAnh')
-        hinh_anh_data = None
+@socketio.on('send_message')
+def handle_send_message_event(data):
+    app.logger.info(f"received message: {data}")  # ghi log tin nhắn nhận được
+    sender_id = current_user.id  
+    receiver_id = data.get('receiver_id')
+    text = data.get('text')
 
-        # Lưu file hình ảnh được tải lên
-        if hinh_anh_file and allowed_file(hinh_anh_file.filename):
-            filename = secure_filename(hinh_anh_file.filename)
-            hinh_anh_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            hinh_anh_file.save(hinh_anh_path)
-            with open(hinh_anh_path, 'rb') as file:
-                hinh_anh_data = file.read()
+    if sender_id is None or receiver_id is None:
+        app.logger.warning("sender_id hoặc receiver_id không được cung cấp")
+        return
 
-        # Tạo đối tượng món ăn mới
-        mon_an = MonAn(
-            ten=ten_mon_an, 
-            mo_ta=mo_ta, 
-            noi_dung=noi_dung, 
-            moi=moi, 
-            noibat=noibat, 
-            hienthi=hienthi, 
-            hinh_anh=hinh_anh_data
-        )
-        # Thêm món ăn vào cơ sở dữ liệu
-        db.session.add(mon_an)
-        db.session.commit()
+    if not str(sender_id).isdigit() or not str(receiver_id).isdigit():
+        app.logger.warning("Invalid sender_id or receiver_id")
+        return
 
-        flash('Món ăn đã được đăng thành công!')
-        return redirect(url_for('admin_post'))
+    sender_id = int(sender_id)
+    receiver_id = int(receiver_id)
 
-    return render_template('admin_post_monan.html')
+    if text is not None:
+        new_message = Message(sender_id=sender_id, receiver_id=receiver_id, text=text, timestamp=datetime.now())
+        try:
+            db.session.add(new_message)
+            db.session.commit()
+            app.logger.info("tin nhan da duoc luu thanh cong")  # log success
+        except Exception as e:
+            app.logger.error(f"Failed to add message to database: {e}")  # log the error
+            db.session.rollback()
+            return
+        socketio.emit('receive_message', data, room=receiver_id)
+
+@socketio.on('broadcast_message')
+def handle_broadcast_message_event(data):
+    app.logger.info(f"da nhan duoc tin nhan quang ba {data}")  # log the received message
+    sender_id = current_user.id  # Get the current user's ID
+    text = data.get('text')
+
+    if sender_id is None:
+        app.logger.warning("sender_id not provided")
+        return
+
+    if not str(sender_id).isdigit():
+        app.logger.warning("Invalid sender_id")
+        return
+
+    sender_id = int(sender_id)
+
+    if text is not None:
+        new_message = Message(sender_id=sender_id, text=text, timestamp=datetime.now())
+        try:
+            db.session.add(new_message)
+            db.session.commit()
+            app.logger.info("tin nhan luu thanh cong")  # log success
+        except Exception as e:
+            app.logger.error(f"Khong the them tin nhan vao co so du lieu {e}")  # log the error
+            db.session.rollback()
+            return
+        socketio.emit('receive_message', data, broadcast=True)
+
+@socketio.on('connect')
+def handle_connect():
+    print("Client connected")
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print("Client disconnected")
+
+@app.route('/get-messages/<int:receiver_id>')
+def get_messages(receiver_id):
+    messages = Message.query.filter(
+        (Message.sender_id == receiver_id) | (Message.receiver_id == receiver_id)
+    ).order_by(Message.timestamp.asc()).all()
+    return jsonify([{'text': message.text, 'sender_id': message.sender_id, 'timestamp': message.timestamp} for message in messages])
+
+@socketio.on('start_chat')
+def handle_start_chat_event(data):
+    app.logger.info(f"Bắt đầu trò chuyện với người dùng có ID: {data['user_id']}")
+    # Mã để bắt đầu trò chuyện với người dùng
+    
+@app.route('/get-contact-list')
+def get_contact_list():
+    # Lấy ID của người dùng hiện tại
+    users = User.query.filter(User.is_admin == False).all()
+    return jsonify([{'id': user.id, 'username': user.username, 'email': user.email} for user in users])
+
+
+@app.route('/review', methods=['POST'])
+def review():
+    user_id = request.json.get('user_id')
+    rating = request.json.get('rating')
+    comment = request.json.get('comment')
+    new_review = Review(user_id=user_id, rating=rating, comment=comment)
+    db.session.add(new_review)
+    db.session.commit()
+    return jsonify({'message': 'Đánh giá thành công'}),200
+
+@app.route('/')
+def index():
+    reviews = Review.query.all()
+    return render_template('danhGia.html', reviews=reviews)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug=True, allow_unsafe_werkzeug=True)

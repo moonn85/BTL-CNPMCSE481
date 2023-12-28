@@ -1,0 +1,431 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html{
+    scroll-behavior:smooth;
+}
+.cw{
+    color: white;
+}
+body{
+    background-color: gainsboro;
+    color: white;
+}
+body a{
+    text-decoration: none;
+}
+.back{
+    background-color: rgb(0, 0, 0);
+    height: 38px;
+}
+.back .gioiThieu{
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-right: 200px;
+    height: 40px;
+    font-weight: 300;
+    font-size: 14px;
+}
+.back .gioiThieu ul li{
+    display: inline-block;
+    color: rgb(198, 198, 198);
+    margin-right: 2px;
+}
+.back .gioiThieu ul li a{
+    color: rgb(198, 198, 198);
+    margin: 0 8px;
+}
+.back .gioiThieu ul li:hover{
+    text-decoration: underline solid white;
+}
+.logo{
+    height: 98px;
+    padding: 20px 0;
+    background-color: rgb(68 152 90);
+}
+.logo .tren{
+    display: flex;
+    align-items: center;
+    padding: 0 200px 0 150px;
+    height: 50px;
+}
+.logo .tren .logo_icon{
+    width: 200px;
+    margin-right: 40px;
+}
+.logo .tren .logo_icon img{
+    width: 33%;
+    padding: 50px;
+    border-radius: 88px;
+}
+.logo a{
+    color: white;
+}
+.logo .tren .search_icon{
+    display: flex;
+}
+.logo .tren .search_icon .search{
+    padding-left: 10px;
+    background-color: white;
+    height: 40px;
+    width: 404px;
+    border: 1px solid white;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.logo .tren .search_icon .kinh{
+    margin-top: 0px;
+    height: 44px;
+    width: 44px;
+    padding: 0;
+    border: 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.logo .tren .search_icon .kinh i{
+    color: rgb(96 211 126);
+    font-size: 18px;
+}
+.logo .tren .search_icon .kinh:hover i{
+    color: rgb(66, 214, 106);
+    transition: 0.7s;
+}
+.logo .tren .search_icon .kinh:hover{
+    background-color: rgb(223 223 223);
+    transition: 0.7s;
+}
+.logo .tren .list{
+    margin-right: 151px;
+    margin-left: 13px;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo .tren .list .out_list{
+    font-size: 23px;
+}
+.logo .tren .list .out_list a{
+    height: auto;
+}
+.logo .tren .list .out_list i{
+    color: white;
+}
+.logo .tren .list:hover .out_list_1{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.2s;
+}
+.logo .tren .list .out_list_1{
+    position: absolute;  
+    display: flex; 
+    justify-content: center;
+    top: 89px;
+    width: 50px;
+    font-size: 20px;
+    color: white;
+    visibility: hidden;
+    opacity: 0;
+}
+.logo .tren .list:hover .in_list{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+.logo .tren .list .in_list{
+    padding: 3px 33px;
+    margin-right: 199px;
+    position: absolute;
+    top: 108px;
+    width: 1002px;
+    height: 370px;
+    border-radius: 3px;
+    background-color: rgb(25 37 43);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 4;
+}
+.logo .tren .list .in_list p{
+    color: #72b559;
+    margin: 18px 0 10px 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+}
+.logo .tren .list .in_list form{
+    display: flex;
+}
+.logo .tren .list .in_list ul{
+    padding-left: 14px;
+}
+.logo .tren .list .in_list ul li{
+    list-style-type: none;
+    margin-bottom: 13px;
+}
+.logo .tren .list .in_list button:hover{
+    background-color: white;
+    color: #72b559;
+    transform: scale(1.1);
+    transition: 0.7s;
+}
+.logo .tren .list .in_list button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #72b559;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 318px;
+    width: 30px;
+    height: 30px;
+}
+.logo .tren .list .in_list label{
+    font-size: 14px;
+    color: white;
+}
+.logo .tren .list .in_list .doc{
+    width: 1px;
+    background-color: rgb(160, 160, 160);
+    border-radius: 5px;
+    margin: 8px 20px 0 40px;
+}
+
+.logo .tren .login_icon{
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+.logo .tren .login_icon i:hover{
+    transform: scale(1.2);
+    transition: 0.7s;
+}
+.logo .tren .login_icon a:hover{
+    font-size: 20px;
+    transition: 0.7s;
+}
+.logo .tren .login_icon a{
+    font-size: 17px;
+    margin-right: 5px;
+}
+.logo .tren .login_icon p{
+    margin-right: 5px;
+}
+.logo .tren .login_icon a i{
+    font-size: 40px;
+}
+.logo .duoi{
+    padding: 0 200px 0 150px;
+    margin-top: 27px;
+}
+.logo .duoi ul{
+    padding: 0;
+}
+.logo .duoi ul li{
+    display: inline-block;
+    margin-right: 134px;
+}
+.logo .duoi ul li:hover{
+    text-decoration: underline solid white;
+}
+.logo .duoi a{
+    font-size: 17px;
+}
+.logo .duoi i{
+    color: white;
+    margin-right: 10px;
+}
+.content{
+    background-color: #ededed;
+    margin: 0 200px 0 150px;
+    padding-bottom: 59px;
+    height: auto;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+}
+.content p{
+    color: black;
+    margin-top: 4px;
+}
+.content h2{
+    color: black;
+    margin-top: 4px;
+}
+.content h3{
+    color: black;
+    margin-top: 4px;
+}
+.content h4{
+    color: black;
+    margin-top: 4px;
+}
+.content .in{
+    height: auto;
+    padding: 17px 24px 0;
+}
+.content .in .tieude{
+    height: 207px;
+}
+.content .in .tieude .trai{
+    display: flex;
+    float: left;
+    width: 60%;
+}
+.content .in .tieude .trai img{
+    width: 280px;
+}
+.content .in .tieude .trai .in_tren{
+    padding: 10px 0 0 20px;
+}
+.content .in .tieude .trai .in_tren p{
+    height: 93px;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+.content .in .tieude .trai .in_tren a:hover{
+    text-decoration: underline;
+}
+.content .in .tieude .trai .in_tren a{
+    color: black;
+}
+.content .in .tieude .phai{
+    border-left: 1px solid gray;
+    padding-top: 15px;
+    padding-left: 15px;
+    float: right;
+    width: 35%;
+    height: auto;
+}
+.content .in .tieude .phai .nd{
+    padding-left: 10px;
+}
+.ke{
+    margin-top: 30px;
+    background-color: rgb(160, 160, 160);
+    width: 100%;
+    height: 1px;
+    border-radius: 5px;
+}
+.content .in .lam{
+    padding: 17px 10px 25px;
+    height: auto;
+}
+.content .in .danhgia{
+    float: right;
+    padding-right: 28px;
+}
+.content .in .danhgia a:hover{
+    font-size: 18px;
+    transition: 0.7s;
+}
+.content .in .danhgia a{
+    padding: 8px 14px;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+}
+
+
+footer{
+    background-color: rgb(58 112 60);
+    height: 258px;
+    padding: 0 200px 0 150px;
+    color: white;
+}
+footer .anh{
+    padding: 10px 0 0;
+}
+footer .anh img{
+    width: 30px;
+    height: 48px;
+    object-fit: cover;
+}
+footer .anh .anh_1{
+    object-position: -8px 0px;
+}
+footer .anh .anh_3{
+    object-position: -74px 0px;
+}
+footer .me{
+    display: flex;
+    margin-top: 25px;
+}
+.me p{
+    font-size: 16px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+.me ul{
+    padding: 0 139px 0 0;
+}
+.me ul li{
+    padding-top: 5px;
+    list-style-type: none;
+}
+.me a{
+    font-size: 14px;
+    color: white;
+}
+.me a:hover{
+    text-decoration: underline;
+}
+.up{
+    position: fixed;
+    color: white;
+    z-index: 5;
+    width: 45px;
+    height: 45px;
+    background-color: #424242;
+    text-align: center;
+    line-height: 45px;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 90px;
+}
+.gioithieu {
+    color: #333;
+    background-color: #f8f8f8;
+    font-family: 'Helvetica Neue', sans-serif;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.gioithieu h3 {
+    color: #d35400;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.gioithieu p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.gioithieu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.gioithieu ul li {
+    padding-left: 30px; /* Adjust based on icon size */
+    margin-bottom: 10px;
+}
+
+.gioithieu ul li:hover {
+    color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .gioithieu {
+        padding: 10px;
+    }
+}
+.gioithieu ul li strong {
+    font-weight: bold;
+}

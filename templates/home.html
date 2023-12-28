@@ -6,6 +6,8 @@
     <title>Dự án</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </head>
 <body>
     <div id="flash-messages">
@@ -317,10 +319,9 @@
             </div> 
             <div class="login_icon">
                 {% if current_user.is_authenticated %}
-                    <img src="{{ current_user.avatar_url }}" alt="" style="width: 50px; height: 50px; border-radius: 50%;">
-                    <p>Welcome, {{ current_user.username }}!</p>
-                    <!-- Cập nhật liên kết đến trang cá nhân -->
-                    <a href="{{ url_for('profile', username=current_user.username) }}">Trang Cá Nhân</a>
+                <img src="{{ url_for('static', filename='images/ngdung.png')}}" alt="" style="width: 50px; height: 50px; border-radius: 50%;">
+                    <a href="{{ url_for('profile') }}">Trang Cá Nhân</a>
+                    <p class="cw">|</p>
                     <a href="{{ url_for('logout') }}">Đăng xuất</a>
                 {% else %}
                     <a style="margin-right: 10px;" href="{{ url_for('dn') }}"><i class="fa-solid fa-circle-user"></i></a>
@@ -334,9 +335,9 @@
                             <ul>
                                 <li><i class="fa-regular fa-eye"></i><a href="">Món ăn vừa xem</a></li>
                                 <li><i class="fa-solid fa-fire-flame-curved"></i><a href="">Top tìm kiếm</a></li>
-                                <li><i class="fa-solid fa-book"></i><a href="{{ url_for('search') }}">Tra Cứu</a></li>
-                                <li><i class="fa-solid fa-apple-whole"></i><a href="">Thực phẩm</a></li>
-                                <li style="margin: 0;"><i class="fa-solid fa-comments"></i><a href="">Đóng góp</a></li>
+                                <li><i class="fa-solid fa-search"></i><a href="{{ url_for('search') }}">Tra Cứu</a></li>
+                                <li><i class="fa-solid fa-apple-whole"></i><a href="{{ url_for('gioithieu') }}">Giới thiệu</a></li>
+                                <li style="margin: 0;"><i class="fa-solid fa-book"></i><a href="">Tạo thực đơn</a></li>
                             </ul>
                         </div>
                     </div>
@@ -374,7 +375,7 @@
                                             <li><i class="fa-regular fa-star"></i></li>
                                         </ul>
                                         <div class="d_phai">
-                                            <a href=""><p style="color: black">Chi tiết<i style="color: black;" class="fa-solid fa-arrow-right"></i></p></a>
+                                            <a href="{{ url_for('sp') }}"><p style="color: black">Chi tiết<i style="color: black;" class="fa-solid fa-arrow-right"></i></p></a>
                                         </div>
                                     </div>
                                     <div class="duoi">
@@ -564,7 +565,24 @@
                                 <li><a href="">Chat với CSKH</a></li>
                             </ul>
                         </div>
+                        
+                        <img id="chat-icon" src="{{ url_for('static', filename='images/iconchat.png') }}" alt="Chat">
+                        <div id="chatbox">
+                            <ul id="messages">
+                                <li class="message admin">
+                                    <div class="message-content">Xin chào, tôi có thể giúp được gì cho bạn ?</div>
+                                </li>
+                                <li class="message user">
+                                    <div class="message-content"></div>
+                                </li>
+                            </ul>
+                            <form id="messageForm">
+                                <input id="myMessage" type="text" autocomplete="off" placeholder="Nhập tin nhắn của bạn ở đây...">
+                                <button type="submit">Send</button>
+                            </form>
+                        </div>
                     </footer>
+                            
                     <a class="up" href="#top"><i class="fa-solid fa-arrow-up"></i></a>
                     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
                 </body>

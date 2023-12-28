@@ -69,23 +69,11 @@
     padding-left: 10px;
 }
 .signin .signin_action .run p{
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 57px;
-    font-size: 25px
+    font-size: 19px
 }
-.signin .signin_action .run .except{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 160px;
-    height: 44px;
-    color: white;
-    font-weight: bold;
-    font-size: 21px;
-    background-color: blue;
-    border-radius: 10px;
-    margin: 35px 32% 0;
-}
+
 .signin .signin_action .run .except:hover{
     transform: scale(1.1);
     transition: 0.7s;
@@ -246,4 +234,21 @@
 @keyframes fadeout {
     from { opacity: 1; }
     to   { opacity: 0; }
+}
+.submit-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 160px;
+        height: 44px;
+        color: white;
+        font-weight: bold;
+        font-size: 21px;
+        background-color: rgb(52 135 229);
+        border-radius: 10px;
+        margin: 35px 32% 0;
+    } /* Thêm hiệu ứng chuyển đổi */
+
+.submit-button:hover {
+    transform: scale(1.05);  /* Khi chuột di chuyển qua nút bấm, phóng to nó một chút */
 }

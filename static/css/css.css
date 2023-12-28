@@ -2,7 +2,8 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    margin: 0; 
+    margin: 0;
+    background-color: rgb(172, 192, 192); 
 }
 .back{
     width: 100%;
@@ -81,13 +82,13 @@ i{
     align-items: center;
     padding-left: 10px
 }
+
 .nd .right .body{
-    border-top: 1px solid black;
-    border-left: 1px solid black;
     margin: 17px 0 0 27px;
     padding: 10px 10px 29px 26px ;
-    background-color: rgb(242, 242, 242);
-    height: auto;
+    width: 95%;
+    padding-bottom: 60px; 
+    background-color: #f2f2f2;
 }
 .an13{
     display: none;
@@ -229,20 +230,135 @@ i{
     margin-bottom: 10px;
     font-size: 18px;
 }
-ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  /* CSS cho mục trong danh sách */
-  li {
-    margin: 0;
+a {
+    display: block;
+    text-align: center;
+    color: blue;
+    margin-top: 40px;
     padding: 0;
     cursor: pointer;
-  }
+    text-decoration: none;
+    transition: transform 0.5s;
+}
+a:active {
+    background-color: #007bff;
+    color: #fff;
+}
+a:hover {
+    transform: scale(1.0);
+}
+#chat-container {
+    display: flex;
+    height: calc(100vh - 44px); /
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    
+    border-radius: 10px; 
+}
 
-  /* CSS cho mục đã chọn */
-  li:active {
-    background-color: #007bff; /* Màu nền khi mục được chọn */
-    color: #fff; /* Màu văn bản khi mục được chọn */
+#contact-list {
+    width: 30%; 
+    background: #f4f4f4; 
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    border-radius: 10px; 
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+#chatbox {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; 
+}
+
+.messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px; 
+    border: 1px solid black;
+}
+.chat-input {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+.contact {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center;
+}
+
+.contact:hover {
+    background-color: #f0f0f0;
+}
+.admin-message {
+    background-color: #f0f0f0; /* Màu nền cho tin nhắn của quản trị viên */
+    color: #000; /* Màu chữ cho tin nhắn của quản trị viên */
+    text-align: right; /* Căn lề phải cho tin nhắn của quản trị viên */
   }
+  
+  .user-message {
+    background-color: #d0d0d0; /* Màu nền cho tin nhắn của khách hàng */
+    color: #000; /* Màu chữ cho tin nhắn của khách hàng */
+  }
+#searchInputContainer {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px 0px 10px 10px;
+    /* other styles... */
+}
+
+#searchInputContainer::before {
+    content: "\f002"; /* Unicode for Font Awesome's search icon */
+    font-family: FontAwesome;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+}
+
+.an15{
+    display: none;
+}
+.an15 .b{
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-top: 9px;
+    height: 107vh;
+}
+.an15 .b .dau{
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding-left: 15px;
+}

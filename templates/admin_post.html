@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/92a187b64c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <title>Quản lý</title>
 </head>
 <body>
@@ -19,21 +22,13 @@
             <div class="muc">  
                 <a href=""><i class="fa-solid fa-house"></i>Trang chủ admin</a>
             </div>
-            <div class="ngang"></div>
-            <div class="muc" onclick="clickAn(this)">
-                <a href="#">Quản trị danh mục <i class="fa-solid fa-caret-down"></i></a>
-            </div>
-            <div class="an">
-                <div class="ngang"></div>
-                <ul>
-                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Loại danh mục</a></li>
-                    <li><i class="fa-solid fa-caret-right"></i> <a href="#">Sản phẩm</a></li>
-                    <li onclick="clickAn13()"><i class="fa-solid fa-caret-right"></i> <a href="#">Bài viết</a></li>
-                    <li onclick="clickAn14()"><i class="fa-solid fa-caret-right"></i> <a href="#">Quản lý bình luận</a></li>
-                </ul>
-            </div>
-            <div class="ngang"></div>
-            <div class="muc" onclick="clickAn(this)">
+            
+                    <a href="#" onclick="clickAn15()">➛ FAQ</a>
+                    <a href="#" id="chat-icon">➛ Chat</a>
+                    <a href="#" onclick="clickAn13()" >➛ Bài viết</a>
+                    <a href="#" onclick="clickAn14()" >➛ Quản lý bình luận</a>
+
+            <!-- <div class="muc" onclick="clickAn(this)">
                 <a href="#">Quản trị giao diện <i class="fa-solid fa-caret-down"></i></a>
             </div>
             <div class="an">
@@ -56,8 +51,8 @@
                     <li><i class="fa-solid fa-caret-right"></i> <a href="#">Khách hàng liên hệ</a></li>
                 </ul>
             </div>
-            <div class="ngang"></div>
-            <div class="muc" onclick="clickAn(this)">
+            <div class="ngang"></div> -->
+            <!-- <div class="muc" onclick="clickAn(this)">
                 <a href="#">SEO Website <i class="fa-solid fa-caret-down"></i></a>
             </div>
             <div class="an">
@@ -81,7 +76,9 @@
                     <li><i class="fa-solid fa-caret-right"></i> <a href="#">Thoát</a></li>
                 </ul>
             </div>
-            <div class="ngang"></div>
+            <div class="ngang"></div> -->
+
+            <a href="{{ url_for('logout') }}"style="display: block; text-align: center; color: blue;margin-top:50px; ">Đăng xuất</a>
         </div>
         <div class="doc"></div>
         <div class="right">
@@ -90,8 +87,46 @@
             </div>
             <div class="ngang"></div>
             <div class="body">
+                <!--Giao diện trả lời câu hỏi của quản trị viên--> 
+                <div class="an15">
+                    <div class="b">
+                        <form action="">
+                            <div class="dau">
+                                <p style="width: 18%;">Tác giả</p>
+                                <p style="width: 34%;">Câu hỏi</p>
+                                <p style="width: 25%;">Hỏi cho bài</p>
+                                <p style="width: 20%;">Thời gian</p>
+                            </div>
+                            <div class="ngang"></div>
+
+                        </form>
+                    </div>
+                </div>
+                      
+                
+                
+                <div id="chat-container">
+                        <div id="contact-list" class="contact-list">
+                            <div id="searchInputContainer">
+                                <input type="text" id="searchInput" placeholder="Search...">
+                              </div>
+                            <!-- Danh sách liên hệ sẽ được nạp ở đây -->
+                        </div>
+                        <div id="chatbox" class="chatbox">
+                            <div id="messages" class="messages">
+                                <div id="myName" class="my-name">My Name</div>
+                                <!-- Tin nhắn sẽ được hiển thị ở đây -->
+                            </div>
+                            <div class="chat-input">
+                                <input id="input-message" type="text" placeholder="Nhập tin nhắn...">
+                                <button id="send-button">Gửi</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+
                 <div class="an13">
-                    <form action="{{ url_for('post_monan') }}" method="post" enctype="multipart/form-data">
+                    <form action="" method="post" enctype="multipart/form-data">
                         <div class="tieude">
                             <p>Món ăn</p>
                             <input type="text" name="tenMonAn" placeholder="Nhập tên món ăn">
@@ -101,6 +136,7 @@
                             <input type="file" name="hinhAnh">
                         </div>
                         <div class="mota">
+                            <p>Mô tả</p>
                             <textarea name="moTa" wrap="off" placeholder="Nhập mô tả món ăn"></textarea>
                         </div>
                         <div class="thongtin">
